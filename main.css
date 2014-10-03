@@ -1,0 +1,15 @@
+/*
+Note: this could be replaced with any @font-face declaration. I’m using the
+Google Fonts API for simplicity.
+*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+:root {
+	font-family: Montserrat, sans-serif;
+}
+
+:host {
+	/* Just to visualize that this stylesheet has loaded correctly. */
+	border: 1px solid green;
+	font-family: Montserrat, sans-serif;
+}

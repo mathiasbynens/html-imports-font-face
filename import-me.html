@@ -1,0 +1,34 @@
+<template>
+	<style>
+		@import url(main.css);
+		/* Note: <link> is inert within <template>, so it cannot be used instead. */
+	</style>
+	This is a web component that uses the same HTML as <a href="standalone.html">
+	<code>standalone.html</code></a> within its <code>&lt;template></code>. When
+	the <code>&lt;template></code> is used (like in <a href="example.html"><code>
+	example.html</code></a>), the styles mostly get applied as expected, except
+	any <code>@font-face</code> declarations seem to be ignored.
+</template>
+<script>
+	(function() {
+
+		var ownerDocument = document.currentScript.ownerDocument;
+
+		var prototype = Object.create(HTMLElement.prototype, {
+			'createdCallback': {
+				'value': function() {
+					var template = ownerDocument.querySelector('template');
+					var clone = document.importNode(template.content, true);
+					var shadow = this.createShadowRoot();
+					shadow.appendChild(clone);
+				}
+			}
+		});
+
+		document.registerElement('example-component', {
+			'prototype': prototype,
+			'extends': 'p'
+		});
+
+	}());
+</script>
